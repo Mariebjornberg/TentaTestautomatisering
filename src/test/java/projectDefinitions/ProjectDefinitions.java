@@ -9,10 +9,12 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.Random;
 
 
-    public class ProjectDefinitions {
+public class ProjectDefinitions {
         private WebDriver driver;
+
 
         @Given("I have entered my {string}")
         public void i_have_entered_my_email(String string) throws InterruptedException {
@@ -24,14 +26,16 @@ import org.openqa.selenium.support.ui.WebDriverWait;
             //WebElement email = driver.findElement(By.id("email"));
             //email.sendKeys(string);
             sendKeys(driver, By.id("email"),(string));
-            click(driver,By.id("onetrust-accept-btn-handler"));
+
         }
 
         @Given("I have also entered a {string}")
         public void i_have_also_entered_a_username(String string) throws InterruptedException {
             //WebElement username = driver.findElement(By.id("new_username"));
             //username.sendKeys(string);
-            sendKeys(driver,By.id("new_username"),(string));
+            Random randomGenerator = new Random();
+            int randomInt = randomGenerator.nextInt(10000);
+            sendKeys(driver,By.id("new_username"),(String.valueOf(randomInt)));
 
             //WebElement popup = driver.findElement(By.id("onetrust-accept-btn-handler"));
             //popup.click();
@@ -44,6 +48,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
             sendKeys(driver,By.id("new_password"),(string));
             //Thread.sleep(5000);
+            click(driver,By.id("onetrust-accept-btn-handler"));
         }
 
         @When("I press sign up")
