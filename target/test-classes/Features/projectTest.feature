@@ -4,14 +4,15 @@ Feature: Mailchimp test
   @mytag
 
   Scenario Outline: sign up
+
     Given I have entered my "<email>"
     Given I have also entered a "<username>"
     And I have also selected a "<password>"
     When I press sign up
-    Then the "<result>" should be on the screen
+    Then the "<result>" should be on the screen for "<username>"
     Examples:
-      | email | username | password | result |
-      |Hejhejhej@lprv.se| Bordefunka1 | Alltgarsomdeska23!   |  |
-    |hejhejhej@apa.com| aaaaaaaaaaeeeeeeeeeerrrrrrrrrrtttttttttttgggggggggggvvvvvvvvvvssssssssssssssggggggggggggbbbbbbbbbbbbbbbbbbbbssssssssss| hejHejhje1234!||
-      |Hejhejhej@lprv.se| Bordefunka1 | Alltgarsomdeska23!   |  |
-    |                 |Anvandareutanemail| ingetGarsomdetska123!||
+      | email| username | password | result |
+      |email1| rand       | Alltgarsomdeska23!   | Check your email |
+      |email1| longName   | hejHejhje1234!       |Enter a value less than 100 characters long|
+      |email1| randOld    | Alltgarsomdeska23!   | Another user with this username already exists. Maybe it's your evil twin. Spooky.|
+      |      | randAgain  |ingetGarsomdetska123! |  Please enter a value|
