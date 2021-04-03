@@ -27,10 +27,8 @@ public class ProjectDefinitions {
         driver = new ChromeDriver();
         driver.get("https://login.mailchimp.com/signup/");
         driver.manage().window().maximize();
-
-        sendKeys(driver, By.id("email"), (randomInt + "@unemail.com"));
-
-    }
+    sendKeys(driver, By.id("email"), (randomInt + "@unemail.com"));
+}
 
 
     @Given("I have also entered a {string}")
@@ -41,8 +39,8 @@ public class ProjectDefinitions {
 
             sendKeys(driver, By.id("new_username"), (string.repeat(14)));
 
-        } else if (string.equals("randOld")) {
-            sendKeys(driver, By.id("new_username"), (randomInt + "dog"));
+        } else if (string.equals("existing")) {
+            sendKeys(driver, By.id("new_username"), ("Majsan123"));
         } else if (string.equals("noMail")) {
             sendKeys(driver, By.id("new_username"), (randomInt + "fish"));
         }
@@ -71,7 +69,7 @@ public class ProjectDefinitions {
         } else if (string2.equals("longName")) {
             WebElement wrong = driver.findElement(By.className("invalid-error"));
             assertEquals(string, wrong.getText());
-        } else if (string2.equals("randOld")) {
+        } else if (string2.equals("existing")) {
             WebElement wrong = driver.findElement(By.className("invalid-error"));
             assertEquals(string, wrong.getText());
         } else if (string2.equals("noMail")) {
