@@ -47,8 +47,8 @@ switch (email) {
     }
 
     @Given("I have also selected a {string}")
-    public void i_have_also_selected_a_password(String string) {
-        sendKeys(By.id("new_password"), (string));
+    public void i_have_also_selected_a_password(String password) {
+        sendKeys(By.id("new_password"), (password));
         click(By.id("onetrust-accept-btn-handler")); //accept cookies
 
     }
@@ -67,16 +67,16 @@ switch (email) {
                 assertEquals(result, value.getText());
             }
             case "longName" -> {
-                WebElement wrong = driver.findElement(By.className("invalid-error"));
-                assertEquals(result, wrong.getText());
+                WebElement value = driver.findElement(By.className("invalid-error"));
+                assertEquals(result, value.getText());
             }
             case "existing" -> {
-                WebElement wrong = driver.findElement(By.className("invalid-error"));
-                assertEquals(result, wrong.getText());
+                WebElement value = driver.findElement(By.className("invalid-error"));
+                assertEquals(result, value.getText());
             }
             case "noMail" -> {
-                WebElement wrong = driver.findElement(By.className("invalid-error"));
-                assertEquals(result, wrong.getText());
+                WebElement value = driver.findElement(By.className("invalid-error"));
+                assertEquals(result, value.getText());
             }
         }
 
