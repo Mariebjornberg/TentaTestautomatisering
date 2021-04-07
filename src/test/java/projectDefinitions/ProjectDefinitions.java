@@ -22,20 +22,23 @@ public class ProjectDefinitions {
 
 
     @Given("I have entered my {string}")
-    public void i_have_entered_my_email(String string) {
+    public void i_have_entered_my_email(String email) {
         System.setProperty("webdriver.chrome.driver", "C:\\Program Files\\selenium\\chromedriver.exe");
         driver = new ChromeDriver();
         driver.get("https://login.mailchimp.com/signup/");
         driver.manage().window().maximize();
-        sendKeys(By.id("email"), (randomInt + "@unemail.com"));
+switch (email) {
+    case "email1" -> sendKeys(By.id("email"), (randomInt + "@unemail.com"));
+    case "email2" -> sendKeys(By.id("email"), (" "));
+}
     }
 
 
     @Given("I have also entered a {string}")
-    public void i_have_also_entered_a_username(String string) {
-        switch (string) {
+    public void i_have_also_entered_a_username(String username) {
+        switch (username) {
             case "rand" -> sendKeys(By.id("new_username"), (randomInt + "cat"));
-            case "longName" -> sendKeys(By.id("new_username"), (string.repeat(14)));
+            case "longName" -> sendKeys(By.id("new_username"), (username.repeat(14)));
             case "existing" -> sendKeys(By.id("new_username"), ("Majsan123"));
             case "noMail" -> sendKeys(By.id("new_username"), (randomInt + "fish"));
         }
@@ -57,23 +60,23 @@ public class ProjectDefinitions {
     }
 
     @Then("the {string} should be on the screen for {string}")
-    public void the_result_should_be_on_the_screen(String string, String string2) {
-        switch (string2) {
+    public void the_result_should_be_on_the_screen(String result, String username) {
+        switch (username) {
             case "rand" -> {
-                WebElement result = driver.findElement(By.cssSelector("#signup-content > div > div > div > h1"));
-                assertEquals(string, result.getText());
+                WebElement value = driver.findElement(By.cssSelector("#signup-content > div > div > div > h1"));
+                assertEquals(result, value.getText());
             }
             case "longName" -> {
                 WebElement wrong = driver.findElement(By.className("invalid-error"));
-                assertEquals(string, wrong.getText());
+                assertEquals(result, wrong.getText());
             }
             case "existing" -> {
                 WebElement wrong = driver.findElement(By.className("invalid-error"));
-                assertEquals(string, wrong.getText());
+                assertEquals(result, wrong.getText());
             }
             case "noMail" -> {
                 WebElement wrong = driver.findElement(By.className("invalid-error"));
-                assertEquals(string, wrong.getText());
+                assertEquals(result, wrong.getText());
             }
         }
 

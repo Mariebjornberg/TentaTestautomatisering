@@ -15,4 +15,4 @@ Feature: Mailchimp test
       | email1 | rand      | Alltgarsomdeska23!    | Check your email                                                                   |
       | email1 | longName  | hejHejhje1234!        | Enter a value less than 100 characters long                                        |
       | email1 | existing  | Alltgarsomdeska23!    | Another user with this username already exists. Maybe it's your evil twin. Spooky. |
-      |        | randAgain | ingetGarsomdetska123! | Please enter a value                                                               |
+      | email2 | noMail | ingetGarsomdetska123! | Please enter a value                                                               |
