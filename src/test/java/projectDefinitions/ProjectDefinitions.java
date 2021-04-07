@@ -22,17 +22,17 @@ public class ProjectDefinitions {
 
 
     @Given("I have entered my {string}")
-    public void i_have_entered_my_email(String string) throws InterruptedException {
+    public void i_have_entered_my_email(String string) {
         System.setProperty("webdriver.chrome.driver", "C:\\Program Files\\selenium\\chromedriver.exe");
         driver = new ChromeDriver();
         driver.get("https://login.mailchimp.com/signup/");
         driver.manage().window().maximize();
-    sendKeys(By.id("email"), (randomInt + "@unemail.com"));
-}
+        sendKeys(By.id("email"), (randomInt + "@unemail.com"));
+    }
 
 
     @Given("I have also entered a {string}")
-    public void i_have_also_entered_a_username(String string) throws InterruptedException {
+    public void i_have_also_entered_a_username(String string) {
         switch (string) {
             case "rand" -> sendKeys(By.id("new_username"), (randomInt + "cat"));
             case "longName" -> sendKeys(By.id("new_username"), (string.repeat(14)));
@@ -44,20 +44,20 @@ public class ProjectDefinitions {
     }
 
     @Given("I have also selected a {string}")
-    public void i_have_also_selected_a_password(String string) throws InterruptedException {
+    public void i_have_also_selected_a_password(String string) {
         sendKeys(By.id("new_password"), (string));
         click(By.id("onetrust-accept-btn-handler")); //accept cookies
+
     }
 
     @When("I press sign up")
-    public void i_press_sign_up() throws InterruptedException {
+    public void i_press_sign_up() {
         click(By.id("create-account"));
-
 
     }
 
     @Then("the {string} should be on the screen for {string}")
-    public void the_result_should_be_on_the_screen(String string, String string2) throws InterruptedException {
+    public void the_result_should_be_on_the_screen(String string, String string2) {
         switch (string2) {
             case "rand" -> {
                 WebElement result = driver.findElement(By.cssSelector("#signup-content > div > div > div > h1"));
